@@ -14,11 +14,19 @@ export const HeroSection = ({
   name = DATA.home.hero.name,
   title = DATA.home.hero.title,
   subtitle = DATA.home.hero.subtitle,
+  greeting = "Hi, I'm",
+  jobTitle = "Quality Assurance Engineer",
+  downloadLabel = "Download CV",
+  viewWorkLabel = "View Work",
 }: {
   showBackground?: boolean;
   name?: string;
   title?: string;
   subtitle?: string;
+  greeting?: string;
+  jobTitle?: string;
+  downloadLabel?: string;
+  viewWorkLabel?: string;
 }) => {
   const scrollToWork = (_e: PressEvent) => {
     const workSection = document.getElementById("work-section");
@@ -41,11 +49,11 @@ export const HeroSection = ({
         >
           <motion.h1
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent"
+            className="text-2xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            Hi, I&apos;m {name} &mdash;Quality Assurance Engineer
+            {greeting} {name} &mdash; {jobTitle}
           </motion.h1>
 
           <motion.p
@@ -77,7 +85,7 @@ export const HeroSection = ({
                 size="lg"
                 variant="shadow"
               >
-                Download CV
+                {downloadLabel}
               </Button>
             </Link>
             <Button
@@ -90,7 +98,7 @@ export const HeroSection = ({
               variant="bordered"
               onPress={scrollToWork}
             >
-              View Work
+              {viewWorkLabel}
             </Button>
           </motion.div>
         </motion.div>

@@ -1,43 +1,42 @@
 import { AR_DATA } from "@/data/localized";
-import { DATA } from "@/data";
+import { ProfileCard } from "@/components/about/profile-card";
+import { EducationTimeline } from "@/components/about/timelines/education-timeline";
+import { ExperienceTimeline } from "@/components/about/timelines/experience-timeline";
+import { TrainingCoursesTimeline } from "@/components/about/timelines/training-courses-timeline";
+import { Skills } from "@/components/about/skills";
+import { PageHeader } from "@/components/page-header";
 
 export default function ArabicAboutPage() {
+  const { about } = AR_DATA;
+
   return (
-    <section dir="rtl" className="mx-auto max-w-5xl space-y-12 px-6 py-20">
-      <h1 className="text-center text-4xl font-bold">{AR_DATA.about.title}</h1>
-      <div className="rounded-2xl bg-content1 p-8">
-        <h2 className="text-2xl font-bold">{AR_DATA.home.name}</h2>
-        <p className="mt-2 text-primary-500">{AR_DATA.about.profileTitle}</p>
-        <div className="mt-6 space-y-4 text-foreground-600">
-          {AR_DATA.about.description.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-      </div>
-      <section>
-        <h2 className="mb-6 text-3xl font-bold">{AR_DATA.about.education}</h2>
-        <div className="space-y-4">
-          {DATA.about.education.map((item) => (
-            <article key={item.title} className="rounded-xl bg-content1 p-6">
-              <h3 className="font-bold">{item.title}</h3>
-              <p className="text-primary-500">{item.date}</p>
-              <p className="mt-2 text-foreground-600">{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section>
-        <h2 className="mb-6 text-3xl font-bold">{AR_DATA.about.experience}</h2>
-        <div className="space-y-4">
-          {DATA.about.experience.map((item) => (
-            <article key={item.title} className="rounded-xl bg-content1 p-6">
-              <h3 className="font-bold">{item.title}</h3>
-              <p className="text-primary-500">{item.date}</p>
-              <p className="mt-2 text-foreground-600">{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+    <section
+      dir="rtl"
+      className="mx-auto max-w-5xl px-6 py-20 text-foreground md:px-12"
+    >
+      <PageHeader texts={[about.title, "الخبرة", "المهارات"]} />
+      <ProfileCard
+        description={about.description}
+        name={AR_DATA.home.name}
+        title={about.profileTitle}
+      />
+      <EducationTimeline
+        education={about.educationItems}
+        title={about.education}
+      />
+      <ExperienceTimeline
+        experience={about.experienceItems}
+        title={about.experience}
+      />
+      <TrainingCoursesTimeline
+        title={about.trainingCourses}
+        trainingCourses={about.trainingCourseItems}
+      />
+      <Skills
+        categoryLabels={about.categoryLabels}
+        tech={about.technologies}
+        title={about.skills}
+      />
     </section>
   );
 }

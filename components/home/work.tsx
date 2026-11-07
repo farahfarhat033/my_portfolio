@@ -9,9 +9,25 @@ import { GradientText } from "@/components/textAnimations/gradient-text";
 import { Project } from "@/components/projects/types";
 import { DATA } from "@/data";
 
-export const WorkSection = () => {
-  const { work } = DATA.projects;
-  const { sectionTitle, sectionDescription } = DATA.projects;
+export const WorkSection = ({
+  work = DATA.projects.work,
+  sectionTitle = DATA.projects.sectionTitle,
+  sectionDescription = DATA.projects.sectionDescription,
+  viewDetailsLabel = "View Details",
+  modalLabels,
+}: {
+  work?: readonly Project[];
+  sectionTitle?: string;
+  sectionDescription?: string;
+  viewDetailsLabel?: string;
+  modalLabels?: {
+    overview: string;
+    platforms: string;
+    qaResponsibilities: string;
+    draft: string;
+    close: string;
+  };
+}) => {
 
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -53,6 +69,7 @@ export const WorkSection = () => {
             >
               <ProjectCard
                 project={project}
+                viewDetailsLabel={viewDetailsLabel}
                 onViewDetails={() => handleOpenModal(project)}
               />
             </motion.div>
@@ -62,6 +79,7 @@ export const WorkSection = () => {
         <ProjectModal
           isOpen={!!selectedProject}
           project={selectedProject}
+          labels={modalLabels}
           onClose={handleCloseModal}
         />
       </div>

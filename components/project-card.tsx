@@ -7,6 +7,7 @@ import { ProjectCardProps } from "@/components/projects/types";
 export const ProjectCard = memo(function ProjectCard({
   project,
   onViewDetails,
+  viewDetailsLabel = "View Details",
 }: ProjectCardProps) {
   return (
     <Card
@@ -21,7 +22,7 @@ export const ProjectCard = memo(function ProjectCard({
       radius="lg"
     >
       <CardBody className="p-0 flex flex-col h-full">
-        <div className="relative w-full aspect-[16/10] overflow-hidden">
+        <div className="relative flex aspect-[16/7] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-primary-500/20 via-content2 to-secondary-500/20">
           {project.image ? (
             <Image
               isZoomed
@@ -36,7 +37,7 @@ export const ProjectCard = memo(function ProjectCard({
               src={project.image}
             />
           ) : (
-            <div className="absolute inset-0 bg-content2" />
+            <Icon className="text-6xl text-primary-500/70" icon={project.visual} />
           )}
           <CardFooter
             className="
@@ -54,22 +55,32 @@ export const ProjectCard = memo(function ProjectCard({
           </CardFooter>
         </div>
 
-        <div className="p-6 flex flex-col flex-grow">
-          <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+        <div className="flex flex-grow flex-col p-4">
+          <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
             {project.title}
           </h3>
-          <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow text-sm leading-relaxed">
+          <p className="mb-3 line-clamp-2 flex-grow text-sm leading-relaxed text-gray-700 dark:text-gray-300">
             {project.description}
           </p>
+          <div className="mb-4 flex flex-wrap gap-1.5">
+            {project.platforms.slice(0, 3).map((platform) => (
+              <span
+                key={platform}
+                className="rounded-full bg-primary-500/10 px-2 py-1 text-[10px] font-medium text-primary-600 dark:text-primary-300"
+              >
+                {platform}
+              </span>
+            ))}
+          </div>
           <Button
             aria-label="View Details"
-            className="w-full md:w-auto border-cyan-400 text-cyan-300 hover:bg-cyan-400/10 transition-colors"
+            className="w-full border-cyan-400 text-cyan-300 transition-colors hover:bg-cyan-400/10 md:w-auto"
             color="primary"
             endContent={<Icon icon="lucide:arrow-right" />}
             variant="bordered"
             onClick={onViewDetails}
           >
-            View Details
+            {viewDetailsLabel}
           </Button>
         </div>
       </CardBody>

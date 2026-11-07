@@ -8,11 +8,15 @@ import { ExperienceItems } from "@/components/about/types";
 
 interface ExperienceTimelineProps {
   experience: ExperienceItems;
+  title?: string;
 }
 
-export const ExperienceTimeline = ({ experience }: ExperienceTimelineProps) => (
+export const ExperienceTimeline = ({
+  experience,
+  title = "Experience",
+}: ExperienceTimelineProps) => (
   <div className="mb-24">
-    <SectionHeader icon="mdi:briefcase-outline" title="Experience" />
+    <SectionHeader icon="mdi:briefcase-outline" title={title} />
 
     <motion.ol
       className="relative ml-6"

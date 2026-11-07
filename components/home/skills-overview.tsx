@@ -7,9 +7,22 @@ import { Icon } from "@iconify/react";
 import { GradientText } from "@/components/textAnimations/gradient-text";
 import { DATA } from "@/data";
 
-export const SkillsOverviewSection = () => {
-  const overview = DATA.home.skills.overview;
-  const { sectionTitle, sectionDescription } = DATA.home.skills;
+type SkillOverviewItem = {
+  name: string;
+  level: number;
+  icon: string;
+  color: "default" | "primary" | "secondary" | "success" | "warning" | "danger";
+};
+
+export const SkillsOverviewSection = ({
+  sectionTitle = DATA.home.skills.sectionTitle,
+  sectionDescription = DATA.home.skills.sectionDescription,
+  overview = DATA.home.skills.overview,
+}: {
+  sectionTitle?: string;
+  sectionDescription?: string;
+  overview?: readonly SkillOverviewItem[];
+}) => {
 
   return (
     <section className="py-20 bg-content1">

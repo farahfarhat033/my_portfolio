@@ -1,9 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -21,14 +26,22 @@ import { DATA } from "@/data";
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   const isArabic = pathname.startsWith("/ar");
+  const englishHref = pathname.replace(/^\/ar(?=\/|$)/, "") || "/";
+  const arabicHref = `/ar${pathname === "/" ? "" : pathname.replace(/^\/en(?=\/|$)/, "")}`;
+
+  useEffect(() => {
+    document.documentElement.lang = isArabic ? "ar" : "en";
+    document.documentElement.dir = isArabic ? "rtl" : "ltr";
+  }, [isArabic]);
+
   const menuItems = isArabic
     ? [
         { name: "الرئيسية", href: "/ar", icon: "lucide:home" },
         { name: "نبذة عني", href: "/ar/about", icon: "lucide:user" },
         { name: "المشاريع", href: "/ar/projects", icon: "lucide:folder-code" },
-        { name: "تواصل معي", href: "/ar/contact", icon: "lucide:send" },
       ]
     : pathname.startsWith("/en")
       ? DATA.navigation.map((item) => ({ ...item, href: `/en${item.href === "/" ? "" : item.href}` }))
@@ -83,9 +96,47 @@ export const Navigation = () => {
           ))}
         </NavbarContent>
 
-        <NavbarItem>
-          <ThemeSwitcher />
-        </NavbarItem>
+        <NavbarContent className="flex items-center gap-1">
+          <NavbarItem>
+            <Dropdown placement={isArabic ? "bottom-start" : "bottom-end"}>
+              <DropdownTrigger>
+                <Button
+                  isIconOnly
+                  aria-label={isArabic ? "اختيار اللغة" : "Choose language"}
+                  className="text-foreground"
+                  variant="light"
+                >
+                  <Icon className="h-6 w-6" icon="lucide:languages" />
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label={isArabic ? "اختيار اللغة" : "Choose language"}
+                onAction={(key) => {
+                  const target = key === "arabic" ? arabicHref : englishHref;
+
+                  setIsMenuOpen(false);
+                  router.push(target);
+                }}
+              >
+                <DropdownItem
+                  key="english"
+                  startContent={<Icon className="h-5 w-5" icon="circle-flags:gb" />}
+                >
+                  English
+                </DropdownItem>
+                <DropdownItem
+                  key="arabic"
+                  startContent={<Icon className="h-5 w-5" icon="circle-flags:sy" />}
+                >
+                  العربية
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarItem>
+          <NavbarItem>
+            <ThemeSwitcher />
+          </NavbarItem>
+        </NavbarContent>
 
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}

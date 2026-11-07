@@ -9,13 +9,15 @@ import { TrainingCourseItems } from "@/components/about/types";
 
 interface TrainingCoursesTimelineProps {
   trainingCourses: TrainingCourseItems;
+  title?: string;
 }
 
 export const TrainingCoursesTimeline = ({
   trainingCourses,
+  title = "Training Courses",
 }: TrainingCoursesTimelineProps) => (
   <div className="mb-24">
-    <SectionHeader icon="lucide:graduation-cap" title="Training Courses" />
+    <SectionHeader icon="lucide:graduation-cap" title={title} />
 
     <motion.ol
       className="relative ml-6"

@@ -57,6 +57,8 @@ export function OrbitingCircles({
             )}
             style={
               {
+                left: "calc(50% - var(--icon-size) / 2)",
+                top: "calc(50% - var(--icon-size) / 2)",
                 "--duration": calculatedDuration,
                 "--radius": radius,
                 "--angle": angle,

@@ -1,8 +1,6 @@
 import "@/app/globals.css"
 
-import { clsx } from "clsx";
 import { type Metadata } from "next";
-import { Inter } from "next/font/google";
 
 import { DATA } from "@/data";
 import { Footer } from "@/components/footer";
@@ -10,11 +8,6 @@ import { Navigation } from "@/components/navbar";
 import { PageWrapper } from "@/components/page-wrapper";
 import { Providers } from "@/app/providers";
 import { StarsBackground } from "@/components/backgrounds/stars";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
@@ -68,12 +61,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html suppressHydrationWarning lang="en">
-      <body
-        className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          inter.variable,
-        )}
-      >
+      <body className="min-h-screen bg-background font-sans antialiased">
         <Providers
           themeProps={{
             attribute: "class",
