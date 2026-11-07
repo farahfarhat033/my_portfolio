@@ -46,6 +46,7 @@ export default function ArabicHomePage() {
         viewWorkLabel={AR_DATA.home.viewWork}
       />
       <SkillsOverviewSection
+        direction="rtl"
         overview={arabicSkills}
         sectionDescription={AR_DATA.home.skillsDescription}
         sectionTitle={AR_DATA.home.skillsTitle}

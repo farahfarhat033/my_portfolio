@@ -58,7 +58,7 @@ export const HeroSection = ({
 
           <motion.p
             animate={{ opacity: 1, y: 0 }}
-            className="text-foreground-600 text-lg md:text-xl mb-8 leading-relaxed"
+            className="text-foreground-600 text-sm md:text-lg mb-8 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
