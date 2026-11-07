@@ -49,24 +49,24 @@ export const ProjectCard = memo(function ProjectCard({
     backdrop-blur-sm
   "
           >
-            <p className="text-xs font-medium text-white tracking-wider uppercase z-10">
+            <p className="text-[10px] font-medium text-white tracking-wider uppercase z-10">
               {project.category}
             </p>
           </CardFooter>
         </div>
 
         <div className="flex flex-grow flex-col p-4">
-          <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="mb-2 text-sm font-semibold text-gray-900 dark:text-white">
             {project.title}
           </h3>
-          <p className="mb-3 line-clamp-2 flex-grow text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+          <p className="mb-3 line-clamp-2 flex-grow text-xs leading-relaxed text-gray-700 dark:text-gray-300">
             {project.description}
           </p>
           <div className="mb-4 flex flex-wrap gap-1.5">
             {project.platforms.slice(0, 3).map((platform) => (
               <span
                 key={platform}
-                className="rounded-full bg-primary-500/10 px-2 py-1 text-[10px] font-medium text-primary-600 dark:text-primary-300"
+                className="rounded-full bg-primary-500/10 px-2 py-1 text-[9px] font-medium text-primary-600 dark:text-primary-300"
               >
                 {platform}
               </span>
@@ -77,6 +77,7 @@ export const ProjectCard = memo(function ProjectCard({
             className="w-full border-cyan-400 text-cyan-300 transition-colors hover:bg-cyan-400/10 md:w-auto"
             color="primary"
             endContent={<Icon icon="lucide:arrow-right" />}
+            size="sm"
             variant="bordered"
             onClick={onViewDetails}
           >

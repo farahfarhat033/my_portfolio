@@ -45,10 +45,10 @@ export const WorkSection = ({
           whileInView={{ opacity: 1, y: 0 }}
         >
           <GradientText
-            className="text-3xl md:text-4xl font-bold mb-4"
+            className="text-xl md:text-2xl font-bold mb-4"
             text={sectionTitle}
           />
-          <p className="text-foreground-600 text-lg max-w-2xl mx-auto">
+          <p className="text-foreground-600 text-sm max-w-2xl mx-auto">
             {sectionDescription}
           </p>
         </motion.div>

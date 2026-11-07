@@ -82,7 +82,7 @@ export const HeroSection = ({
                 aria-label="Downoald CV"
                 color="primary"
                 endContent={<Icon icon="lucide:download" />}
-                size="lg"
+                size="sm"
                 variant="shadow"
               >
                 {downloadLabel}
@@ -94,7 +94,7 @@ export const HeroSection = ({
               className="w-full sm:w-auto"
               color="primary"
               endContent={<Icon icon="lucide:arrow-down" />}
-              size="lg"
+              size="sm"
               variant="bordered"
               onPress={scrollToWork}
             >
